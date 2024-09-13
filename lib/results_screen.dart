@@ -1,3 +1,4 @@
+import 'package:adv_basics/questions_summary/summary_item.dart';
 import 'package:flutter/material.dart';
 
 import 'package:adv_basics/data/questions.dart';
@@ -6,12 +7,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// The results screen widget.
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({
-    super.key,
-    required this.chosenAnswers,
-    required this.onRestart,
-    required this.onBlank
-  });
+  const ResultsScreen(
+      {super.key,
+      required this.chosenAnswers,
+      required this.onRestart,
+      required this.onBlank});
 
   final void Function() onRestart;
   final void Function() onBlank;
@@ -43,6 +43,15 @@ class ResultsScreen extends StatelessWidget {
         )
         .length;
 
+    String message;
+    if (numCorrectQuestions == 6) {
+      message = 'You are smart as a Rune';
+    } else if (numCorrectQuestions >= 3) {
+      message = 'You are atleast better than Avnit';
+    } else {
+      message = 'You have been a very bad boy';
+    }
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -51,7 +60,7 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+              '$message \n You answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
               style: GoogleFonts.lato(
                 color: const Color.fromARGB(255, 230, 200, 253),
                 fontSize: 20,
@@ -75,8 +84,7 @@ class ResultsScreen extends StatelessWidget {
               label: const Text('Restart Quiz!'),
             ),
             TextButton.icon(
-              onPressed: onBlank,
-              label: const Text("Blank Screen")),
+                onPressed: onBlank, label: const Text("Blank Screen")),
           ],
         ),
       ),
