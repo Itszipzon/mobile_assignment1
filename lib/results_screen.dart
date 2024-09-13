@@ -84,7 +84,11 @@ class ResultsScreen extends StatelessWidget {
               label: const Text('Restart Quiz!'),
             ),
             TextButton.icon(
-                onPressed: onBlank, label: const Text("Blank Screen")),
+                onPressed: onBlank,
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                ),
+                label: const Text("Blank Screen")),
           ],
         ),
       ),
