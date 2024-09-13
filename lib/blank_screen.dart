@@ -17,6 +17,9 @@ class BlankScreen extends StatelessWidget {
           onPressed: onRestart,
           label: const Text("Restart Quiz"),
           icon: const Icon(Icons.refresh),
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.white,
+          ),
         ),
       ),
     );
