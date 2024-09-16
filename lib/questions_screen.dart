@@ -25,11 +25,17 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
   int questionTime = 10;
 
+  final GlobalKey<QuizTimerState> _timerKey = GlobalKey<QuizTimerState>();
+
   void answerQuestion(String selectedAnswer) {
     widget.onSelectAnswer(selectedAnswer);
     setState(() {
       currentQuestionIndex++;
     });
+        
+    if (_timerKey.currentState != null) {
+      _timerKey.currentState!.restartTimer();
+    }
   }
 
   void onTimeElapsed() {
@@ -77,6 +83,7 @@ return Stack(
           child: Container(
             margin: const EdgeInsets.all(20),
             child: QuizTimer(
+              key: _timerKey,
               onTimeElapsed: onTimeElapsed,
               time: questionTime,
               restartTimer: currentQuestionIndex < questions.length - 1,
