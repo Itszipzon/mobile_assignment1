@@ -74,7 +74,14 @@ return Stack(
         ),
         Align(
           alignment: Alignment.bottomLeft,
-          child: QuizTimer(onTimeElapsed: onTimeElapsed, time: questionTime, restartTimer: (currentQuestionIndex < questions.length - 1)),
+          child: Container(
+            margin: const EdgeInsets.all(20),
+            child: QuizTimer(
+              onTimeElapsed: onTimeElapsed,
+              time: questionTime,
+              restartTimer: currentQuestionIndex < questions.length - 1,
+            ),
+          ),
         ),
       ],
     );
