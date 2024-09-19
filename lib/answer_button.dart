@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A button that displays an answer.
 class AnswerButton extends StatelessWidget {
   const AnswerButton({
     super.key,
@@ -7,8 +8,8 @@ class AnswerButton extends StatelessWidget {
     required this.onTap,
   });
 
-  final String answerText;
-  final void Function() onTap;
+  final String answerText; /// The text to display on the button.
+  final void Function() onTap; /// The function to run when the button is tapped.
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+/// A widget that displays a countdown timer.
 class QuizTimer extends StatefulWidget {
   const QuizTimer({
     super.key,
@@ -17,10 +18,12 @@ class QuizTimer extends StatefulWidget {
   State<StatefulWidget> createState() => QuizTimerState();
 }
 
+/// The state of the quiz timer.
 class QuizTimerState extends State<QuizTimer> {
   late int _secondsLeft;
   Timer? _timer;
 
+  /// Restart the timer.
   void restartTimer() {
     setState(() {
       _secondsLeft = widget.time;
@@ -29,6 +32,7 @@ class QuizTimerState extends State<QuizTimer> {
     startTimer();
   }
 
+  /// Start the timer.
   void startTimer() {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
@@ -49,6 +53,7 @@ class QuizTimerState extends State<QuizTimer> {
     );
   }
 
+  /// Cancel the timer when initiating the state.
   @override
   void initState() {
     super.initState();

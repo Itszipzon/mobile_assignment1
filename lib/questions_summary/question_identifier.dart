@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays the question and if it was correct or not.
 class QuestionIdentifier extends StatelessWidget {
   const QuestionIdentifier({
     super.key,
@@ -7,8 +8,8 @@ class QuestionIdentifier extends StatelessWidget {
     required this.questionIndex,
   });
 
-  final int questionIndex;
-  final bool isCorrectAnswer;
+  final int questionIndex; /// The index of the question.
+  final bool isCorrectAnswer; /// Whether the answer was correct.
 
   @override
   Widget build(BuildContext context) {

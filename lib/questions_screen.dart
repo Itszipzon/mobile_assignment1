@@ -12,7 +12,7 @@ class QuestionsScreen extends StatefulWidget {
     required this.onSelectAnswer,
   });
 
-  final void Function(String answer) onSelectAnswer;
+  final void Function(String answer) onSelectAnswer; /// Function to run when selecting an answer.
 
   @override
   State<QuestionsScreen> createState() {
@@ -22,11 +22,12 @@ class QuestionsScreen extends StatefulWidget {
 
 /// The state of the questions screen.
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  var currentQuestionIndex = 0;
-  int questionTime = 10;
+  var currentQuestionIndex = 0; /// The index of the current question, zero is starting value.
+  int questionTime = 10; /// The amount of seconds to answer each question.
 
-  final GlobalKey<QuizTimerState> _timerKey = GlobalKey<QuizTimerState>();
+  final GlobalKey<QuizTimerState> _timerKey = GlobalKey<QuizTimerState>(); /// The key for the quiz timer.
 
+  /// Answer the question by selecting an answer.
   void answerQuestion(String selectedAnswer) {
     widget.onSelectAnswer(selectedAnswer);
     setState(() {
@@ -38,6 +39,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     }
   }
 
+  /// Run when the time for a question has elapsed.
   void onTimeElapsed() {
     answerQuestion('');
   }

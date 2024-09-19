@@ -21,6 +21,7 @@ class _QuizState extends State<Quiz> {
   List<String> _selectedAnswers = [];
   var _activeScreen = 'start-screen';
 
+  /// Switch to the questions screen.
   void _switchScreen() {
     setState(() {
       _activeScreen = 'questions-screen';
@@ -46,6 +47,7 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  /// Switch to the blank screen.
   void blankScreen() {
     setState(() {
       _activeScreen = 'blank-screen';
@@ -56,12 +58,14 @@ class _QuizState extends State<Quiz> {
   Widget build(context) {
     Widget screenWidget = StartScreen(_switchScreen);
 
+    /// If the active screen is the questions screen, display the questions screen widget.
     if (_activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(
         onSelectAnswer: _chooseAnswer,
       );
     }
 
+    /// If the active screen is the results screen, display the results screen widget.
     if (_activeScreen == 'results-screen') {
       screenWidget = ResultsScreen(
         chosenAnswers: _selectedAnswers,
@@ -70,6 +74,7 @@ class _QuizState extends State<Quiz> {
       );
     }
 
+    /// If the active screen is the blank screen, display the blank screen widget.
     if (_activeScreen == 'blank-screen') {
       screenWidget = BlankScreen(
         onRestart: restartQuiz,

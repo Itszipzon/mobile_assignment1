@@ -11,13 +11,14 @@ class ResultsScreen extends StatelessWidget {
       required this.onRestart,
       required this.onBlank});
 
-  final void Function() onRestart;
-  final void Function() onBlank;
-  final List<String> chosenAnswers;
+  final void Function() onRestart; /// Function to run when restarting the quiz.
+  final void Function() onBlank; /// Function to run when switching to the blank screen.
+  final List<String> chosenAnswers; /// The list of answers chosen by the user.
 
   List<Map<String, Object>> get summaryData {
-    final List<Map<String, Object>> summary = [];
+    final List<Map<String, Object>> summary = []; /// The list of question summaries.
 
+    /// Add the question summaries to the list.
     for (var i = 0; i < chosenAnswers.length; i++) {
       summary.add(
         {
@@ -41,6 +42,7 @@ class ResultsScreen extends StatelessWidget {
         )
         .length;
 
+    /// The message to display based on the number of correct answers.
     String message;
     if (numCorrectQuestions == 6) {
       message = 'You are smart as a Rune';

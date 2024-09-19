@@ -5,8 +5,8 @@ import 'package:adv_basics/questions_summary/question_identifier.dart';
 
 class SummaryItem extends StatelessWidget {
   const SummaryItem(this.itemData, {super.key});
-
-  final Map<String, Object> itemData;
+  
+  final Map<String, Object> itemData; /// The data for the summary item.
 
   @override
   Widget build(BuildContext context) {

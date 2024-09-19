@@ -1,5 +1,6 @@
 import 'package:adv_basics/models/quiz_question.dart';
 
+/// The list of quiz questions.
 const questions = [
   QuizQuestion(
     'What are the main building blocks of Flutter UIs?',

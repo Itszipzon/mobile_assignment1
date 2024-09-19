@@ -1,10 +1,11 @@
 import 'package:adv_basics/data/questions.dart';
 import 'package:flutter/material.dart';
 
+/// The settings screen.
 class SettingsScreen extends StatefulWidget {
-  final Set<int> disabledQuestions;
+  final Set<int> disabledQuestions; /// The set of disabled questions.
   final void Function(Set<int> updatedDisabledQuestions)
-      onUpdateDisabledQuestions;
+      onUpdateDisabledQuestions; /// The function to update the disabled questions.
 
   const SettingsScreen({
     super.key,
