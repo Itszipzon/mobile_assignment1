@@ -1,0 +1,147 @@
+@startuml
+set namespaceSeparator ::
+
+class "adv_basics::answer_button.dart::AnswerButton" {
+  +String answerText
+  +void Function() onTap
+  +Widget build()
+}
+
+"adv_basics::answer_button.dart::AnswerButton" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "adv_basics::answer_button.dart::AnswerButton"
+
+class "adv_basics::blank_screen.dart::BlankScreen" {
+  +void Function() onRestart
+  +Widget build()
+}
+
+"adv_basics::blank_screen.dart::BlankScreen" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "adv_basics::blank_screen.dart::BlankScreen"
+
+class "adv_basics::models::quiz_question.dart::QuizQuestion" {
+  +String text
+  +List<String> answers
+  +List<String> shuffledAnswers
+}
+
+class "adv_basics::questions_screen.dart::QuestionsScreen" {
+  +void Function(String) onSelectAnswer
+  +State<QuestionsScreen> createState()
+}
+
+"adv_basics::questions_screen.dart::QuestionsScreen" o-- "null::void Function(String)"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "adv_basics::questions_screen.dart::QuestionsScreen"
+
+class "adv_basics::questions_screen.dart::_QuestionsScreenState" {
+  +int currentQuestionIndex
+  +int questionTime
+  -GlobalKey<QuizTimerState> _timerKey
+  +void answerQuestion()
+  +void onTimeElapsed()
+  +Widget build()
+}
+
+"adv_basics::questions_screen.dart::_QuestionsScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<QuizTimerState>"
+"flutter::src::widgets::framework.dart::State" <|-- "adv_basics::questions_screen.dart::_QuestionsScreenState"
+
+class "adv_basics::questions_summary::questions_summary.dart::QuestionsSummary" {
+  +List<Map<String, Object>> summaryData
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "adv_basics::questions_summary::questions_summary.dart::QuestionsSummary"
+
+class "adv_basics::questions_summary::question_identifier.dart::QuestionIdentifier" {
+  +int questionIndex
+  +bool isCorrectAnswer
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "adv_basics::questions_summary::question_identifier.dart::QuestionIdentifier"
+
+class "adv_basics::questions_summary::summary_item.dart::SummaryItem" {
+  +Map<String, Object> itemData
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "adv_basics::questions_summary::summary_item.dart::SummaryItem"
+
+class "adv_basics::quiz.dart::Quiz" {
+  +State<Quiz> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "adv_basics::quiz.dart::Quiz"
+
+class "adv_basics::quiz.dart::_QuizState" {
+  -List<String> _selectedAnswers
+  -String _activeScreen
+  -void _switchScreen()
+  -void _chooseAnswer()
+  +void restartQuiz()
+  +void blankScreen()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "adv_basics::quiz.dart::_QuizState"
+
+class "adv_basics::results_screen.dart::ResultsScreen" {
+  +void Function() onRestart
+  +void Function() onBlank
+  +List<String> chosenAnswers
+  +List<Map<String, Object>> summaryData
+  +Widget build()
+}
+
+"adv_basics::results_screen.dart::ResultsScreen" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "adv_basics::results_screen.dart::ResultsScreen"
+
+class "adv_basics::settingsScreen.dart::SettingsScreen" {
+  +Set<int> disabledQuestions
+  +void Function(Set<int>) onUpdateDisabledQuestions
+  +_SettingsScreenState createState()
+}
+
+"adv_basics::settingsScreen.dart::SettingsScreen" o-- "null::void Function(Set<int>)"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "adv_basics::settingsScreen.dart::SettingsScreen"
+
+class "adv_basics::settingsScreen.dart::_SettingsScreenState" {
+  -Set<int> _localDisabledQuestions
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "adv_basics::settingsScreen.dart::_SettingsScreenState"
+
+class "adv_basics::start_screen.dart::StartScreen" {
+  +void Function() startQuiz
+  +Widget build()
+}
+
+"adv_basics::start_screen.dart::StartScreen" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "adv_basics::start_screen.dart::StartScreen"
+
+class "adv_basics::timer.dart::QuizTimer" {
+  +void Function() onTimeElapsed
+  +int time
+  +bool restartTimer
+  +State<StatefulWidget> createState()
+}
+
+"adv_basics::timer.dart::QuizTimer" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "adv_basics::timer.dart::QuizTimer"
+
+class "adv_basics::timer.dart::QuizTimerState" {
+  -int _secondsLeft
+  -Timer? _timer
+  +void restartTimer()
+  +void startTimer()
+  +void initState()
+  +void dispose()
+  +Widget build()
+}
+
+"adv_basics::timer.dart::QuizTimerState" o-- "dart::async::Timer"
+"flutter::src::widgets::framework.dart::State" <|-- "adv_basics::timer.dart::QuizTimerState"
+
+
+@enduml
